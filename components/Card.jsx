@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 const Card = ({ name, email, username }) => (
   <div className="card">
-    <p>name: {name}</p>
+    <h3>{name}</h3>
     {email && <p>email: {email}</p>}
     {username && <p>username: {username}</p>}
   </div>

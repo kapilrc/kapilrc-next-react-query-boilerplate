@@ -1,12 +1,10 @@
 import Head from 'next/head';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { getPosts } from '../api/posts';
-import { getUsers } from '../api/users';
-import Posts from '../components/Posts';
+import { getUsers } from '../api/user.service';
 import Users from '../components/Users';
 import { useUser } from '../redux/hooks/useUser';
-import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 
 export default function Home() {
   const [{ users }, { setUsers }] = useUser();
@@ -15,6 +13,7 @@ export default function Home() {
   });
 
   React.useEffect(() => {
+    // an example to set data in a global state
     setUsers(data);
   }, [data]);
 
@@ -23,7 +22,7 @@ export default function Home() {
       return <div>Loading...</div>;
     }
     if (error) {
-      return <div>{error.message}</div>;
+      return <div>{error?.message}</div>;
     }
     if (isSuccess) {
       return <Users users={users} />;
@@ -32,14 +31,20 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>Create Next App</title>
       </Head>
 
-      <main>{renderResult()}</main>
+      <main>
+        <div className="main">{renderResult()}</div>
+      </main>
 
-      <footer> Kapilrc Footer</footer>
+      <footer>
+        <Link href="https://github.com/kapilrc" target="_blank">
+          Kapilrc Github
+        </Link>
+      </footer>
     </div>
   );
 }

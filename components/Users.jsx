@@ -8,7 +8,7 @@ const Users = ({ users }) => {
         <div
           key={id}
           className="card"
-          onClick={() => router.push(`/user/${id}`)}
+          onClick={() => router.push(`/user/${id}`)} //we can use next/link . this is alternative way
         >
           {name}
         </div>
